@@ -8,7 +8,7 @@ There is already one `GET` endpoint on `http://localhost:3000` which returns `He
 
 Your task is to add three new endpoints.
 
-When you are done, you must **send a pull request** to this repository with your solution.
+When you are done, you can either send a pull request to this repository with your solution or email your solution to HR manager.
 
 You will then receive a detailed review of your code.
 
