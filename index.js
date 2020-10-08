@@ -1,8 +1,12 @@
-const express = require('express');
-const app = express();
 
-app.get('/', function (req, res) {
-    res.send('Hello, World!');
-});
+const startServer = require('./src/infrastructure/server');
 
-app.listen(3000);
+const start = async() => {
+	try {
+		await startServer();
+	} catch (err) {
+		console.log(err);
+	}
+};
+
+start();
