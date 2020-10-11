@@ -50,12 +50,12 @@ app.get("/capital", function (req, res) {
 //3
 app.post("/excel-sum", upload.single("file"), function (req, res) {
   const file = req.file;
-  if (!file || file.filename.split(".").pop().toLowerCase() != "xlsx") {
-    res
+  if (!file || !file.originalname.match(/\.(xlsx|XLSX)$/)) {
+    return res
       .status(400)
       .send(
         "Bad. Very, very bad request.\
-                    \n(#400 probably file not added to upload or not an .xlsx file)"
+                    \n(#400) no file to upload or not an .xlsx file."
       );
   }
 
