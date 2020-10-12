@@ -20,7 +20,6 @@ request.get(countriesAndCapitalsURL, (error, response, body) => {
     if (error) console.log('Error: ', error);
     console.log('statusCode:', response && response.statusCode);
     countriesAndCapitals = JSON.parse(body);
-    console.log(countriesAndCapitals);
 });
 
 app.get('/capital?', function (request, response) {
