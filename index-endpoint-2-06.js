@@ -20,20 +20,21 @@ request.get(countriesAndCapitalsURL, (error, response, body) => {
     if (error) console.log('Error: ', error);
     console.log('statusCode:', response && response.statusCode);
     countriesAndCapitals = JSON.parse(body);
+    console.log(countriesAndCapitals);
+});
 
-    app.get('/capital?', function (request, response) {
-        const queryObject = url.parse(request.url,true).query;
-        countryToCheck = queryObject.country.toLowerCase();
+app.get('/capital?', function (request, response) {
+    const queryObject = url.parse(request.url,true).query;
+    countryToCheck = queryObject.country.toLowerCase();
 
-        countryAndCapital = countriesAndCapitals.find(
-            element => element.country.toLowerCase() === countryToCheck
-        ) || { country: countryToCheck, city: 'Not Found' };
+    countryAndCapital = countriesAndCapitals.find(
+        element => element.country.toLowerCase() === countryToCheck
+    ) || { country: countryToCheck, city: 'Not Found' };
 
-        capitalToFind = countryAndCapital.city;
-        countryToCheck = capitalize(countryToCheck);
-        console.log('Capital of', countryToCheck, 'is', capitalToFind);
-        response.send(`Capital of ${countryToCheck} is ${capitalToFind}`);
-    });
+    capitalToFind = countryAndCapital.city;
+    countryToCheck = capitalize(countryToCheck);
+    console.log('Capital of', countryToCheck, 'is', capitalToFind);
+    response.send(`Capital of ${countryToCheck} is ${capitalToFind}`);
 });
 
 app.listen(3000);
