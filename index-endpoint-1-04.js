@@ -11,21 +11,21 @@ const companyPriceURL = 'https://api.coindesk.com/v1/bpi/currentprice.json';
 let companyPrice = {};
 
 const getCompanyPrice = () => {
-  request.get(companyPriceURL, (error, response, body) => {
-    if (error) console.log('Error: ', error);
-    console.log('statusCode:', response && response.statusCode);
-    companyPrice = JSON.parse(body);
-    console.log(`Price of ${companyPrice.chartName} is ${companyPrice.bpi.EUR.rate_float} ${companyPrice.bpi.EUR.code}`);
-  });
+    request.get(companyPriceURL, (error, response, body) => {
+        if (error) console.log('Error: ', error);
+        console.log('statusCode:', response && response.statusCode);
+        companyPrice = JSON.parse(body);
+    });
 };
 
 getCompanyPrice();
 
 app.get('/btc', (req, res, next) => {
-  getCompanyPrice();
-  next();
+    getCompanyPrice();
+    next();
 }, (req, res) => {
-  res.send(`Price of ${companyPrice.chartName} is ${companyPrice.bpi.EUR.rate_float} ${companyPrice.bpi.EUR.code}`);
+    console.log(`Price of ${companyPrice.chartName} is ${companyPrice.bpi.EUR.rate_float} ${companyPrice.bpi.EUR.code}`);
+    res.send(`Price of ${companyPrice.chartName} is ${companyPrice.bpi.EUR.rate_float} ${companyPrice.bpi.EUR.code}`);
 });
 
 app.listen(3000);
