@@ -1,7 +1,7 @@
 {
   "name": "jr-js-task",
   "version": "1.0.0",
-  "description": "",
+  "description": "This repository contains an [express](https://github.com/expressjs/express) server.",
   "main": "index.js",
   "scripts": {
     "start": "node index"
@@ -10,6 +10,19 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
-  }
+    "country-json": "^1.1.0",
+    "express": "^4.17.1",
+    "multer": "^1.4.2",
+    "request": "^2.88.2",
+    "xlstream": "^2.3.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grihasmp5/jr-js-task.git"
+  },
+  "bugs": {
+    "url": "https://github.com/grihasmp5/jr-js-task/issues"
+  },
+  "homepage": "https://github.com/grihasmp5/jr-js-task#readme"
 }
