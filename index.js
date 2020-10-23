@@ -10,8 +10,8 @@ app.get("/", function (req, res) {
     res.send("Hello World");
 });
 
-app.get("/btc", async (req, res) => {
-    await request(
+app.get("/btc", (req, res) => {
+    request(
         "https://api.coindesk.com/v1/bpi/currentprice.json",
         { json: true },
         (err, response, body) => {
@@ -38,21 +38,16 @@ app.post("/excel-sum", upload.any(), async (req, res) => {
     const file = req.files[0];
     let sum = 0;
 
-    await (async () => {
-        const stream = await getXlsxStream({
-            filePath: `./${file.path}`,
-            sheet: 0,
-        });
+    const stream = await getXlsxStream({
+        filePath: `./${file.path}`,
+        sheet: 0,
+    });
 
-        sum = await new Promise((resolve, reject) => {
-            let sum1 = 0;
-            stream.on("data", (x) => {
-                sum1 += x.raw.obj.A;
-            });
-            stream.on("end", () => resolve(sum1));
-        });
+    // async iterator
+    for await (const x of stream) {
+        sum += x.raw.obj.A;
+    }
 
-    })();
     res.send(`SUM is ${sum}`);
 });
 
